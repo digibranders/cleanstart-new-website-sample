@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  /* Canvas */
+  --color-canvas: #FAFBFF;
+  --color-deep: #030712;
+  --color-slate: #0F172A;
+  --color-midnight: #070d1f;
+
+  /* Text */
+  --color-txt: #181818;
+  --color-txt-secondary: rgba(24,24,24,0.65);
+  --color-txt-muted: rgba(24,24,24,0.4);
+
+  /* Vibrant palette */
+  --color-cyan: #00E5FF;
+  --color-blue: #056BF1;
+  --color-purple: #8B5CF6;
+  --color-magenta: #EC4899;
+  --color-green: #10B981;
+  --color-amber: #F59E0B;
+
+  /* Product accents */
+  --color-p-image: #056BF1;
+  --color-p-packages: #10B981;
+  --color-p-ml: #8B5CF6;
+  --color-p-sight: #F59E0B;
+  --color-p-sbom: #EC4899;
+
+  /* Fonts */
+  --font-heading: "Manrope", system-ui, sans-serif;
+  --font-body: "Sora", system-ui, sans-serif;
+}
+
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--color-txt);
+  background: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  padding: 0.75rem 1.5rem; background: var(--color-blue); color: #fff;
+  font-weight: 700; border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- Aurora mesh blobs ---------- */
+@keyframes blob-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(80px, -60px) scale(1.1); }
+  66% { transform: translate(-40px, 40px) scale(0.95); }
+}
+@keyframes blob-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-70px, 50px) scale(1.05); }
+  66% { transform: translate(50px, -80px) scale(1.1); }
+}
+@keyframes blob-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  33% { transform: translate(60px, 70px) scale(0.95); }
+  66% { transform: translate(-60px, -30px) scale(1.1); }
+}
+
+/* ---------- Orbital spins ---------- */
+@keyframes spin-12 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spin-18 { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes spin-25 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* ---------- Float ---------- */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* ---------- Pulse glow ---------- */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+/* ---------- Gradient flow (for underlines, dividers) ---------- */
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ---------- Star twinkle ---------- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+/* ---------- Dot grid pattern ---------- */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.dot-grid-light {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ---------- Luminous line ---------- */
+.luminous-line {
+  background: linear-gradient(90deg, transparent, var(--color-cyan), var(--color-blue), var(--color-purple), transparent);
+  background-size: 200% 100%;
+  animation: gradient-flow 4s linear infinite;
+}
+.luminous-line-v {
+  background: linear-gradient(180deg, transparent, var(--color-cyan), var(--color-blue), var(--color-purple), transparent);
+  background-size: 100% 200%;
+  animation: gradient-flow 4s linear infinite;
+}
+
+/* ---------- Focus states (a11y) ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Interactive defaults ---------- */
+button, a, [role="button"], [tabindex="0"] {
+  cursor: pointer;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
